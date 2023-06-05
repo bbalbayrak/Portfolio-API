@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
+const contactRoutes = require("./routes/contact");
 
 dotenv.config();
 const app = express();
@@ -14,6 +16,8 @@ const http = require("http").Server(app);
 app.use(cors());
 
 app.use(bodyParser.json());
+
+app.use(contactRoutes);
 
 mongoose.connect(URI).then((res) => {
   http.listen(PORT);
