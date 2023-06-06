@@ -16,6 +16,9 @@ exports.postContact = async (req, res, next) => {
     email: email,
     message: message,
   });
+  if (!name && !email && !message) {
+    return res.status(400).json({ message: "Invalid Field !" });
+  }
 
   const availableEmail = await Contact.findOne({ email: email });
 

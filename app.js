@@ -19,6 +19,10 @@ app.use(bodyParser.json());
 
 app.use(contactRoutes);
 
+app.use("/", (req, res, next) => {
+  res.download("./cv.pdf");
+});
+
 mongoose.connect(URI).then((res) => {
   http.listen(PORT);
   console.log(`server is running ${PORT}`);
